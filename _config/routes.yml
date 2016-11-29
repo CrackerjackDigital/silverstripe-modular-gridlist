@@ -1,0 +1,6 @@
+---
+Name: modular-gridlist-routes
+---
+Director:
+  rules:
+    'gridlist//$Action/$PageID': Modular\GridList\Controllers\Standalone

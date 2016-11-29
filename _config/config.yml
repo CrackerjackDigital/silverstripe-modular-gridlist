@@ -1,0 +1,6 @@
+---
+Name: modular-gridlist-service
+---
+Injector:
+  GridListService:
+    class: Modular\GridList\Service
