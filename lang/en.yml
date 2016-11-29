@@ -1,0 +1,13 @@
+en:
+  Modular\Relationships\HasGridListFilters:
+    GridListFilters:
+      Label: 'Associated filters'
+      Guide: 'Add filters here to keep the item shown when corresponding in-page filters is applied'
+  Modular\GridList\Fields\Mode:
+    GridListMode:
+      Label: 'Display mode'
+      Guide: 'How items will display in the grid, if this cannot be changed then it is configured elsewhere for the page'
+  Modular\GridList\Providers\Filters\AllFilter:
+    AllFilter:
+      Title: 'All Filter'
+      Guide: 'Filter for the page type, will always appear on the page as the first filter'
