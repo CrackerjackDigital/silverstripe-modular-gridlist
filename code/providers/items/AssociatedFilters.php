@@ -1,11 +1,9 @@
 <?php
 namespace Modular\GridList\Providers\Items;
 
-use Modular\Fields\Field;
+use Modular\Field;
 use Modular\Fields\ModelTag;
-use Modular\GridList\Interfaces\ItemsConstraints;
 use Modular\GridList\Interfaces\ItemsProvider;
-use Modular\Models\GridListFilter;
 use Modular\Relationships\HasGridListFilters;
 
 /**

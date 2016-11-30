@@ -2,7 +2,7 @@
 namespace Modular\GridList\Providers\Filters;
 
 use Modular\Application;
-use Modular\Fields\Field;
+use Modular\Field;
 use Modular\GridList\Interfaces\FiltersProvider;
 use Modular\Models\GridListFilter;
 

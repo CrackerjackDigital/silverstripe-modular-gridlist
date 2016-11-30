@@ -1,7 +1,7 @@
 <?php
 namespace Modular\GridList\Layout;
 
-use Modular\Fields\Field;
+use Modular\Field;
 
 class Grouping extends Field {
 	const SingleFieldName = 'Grouping';

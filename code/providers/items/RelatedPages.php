@@ -1,7 +1,7 @@
 <?php
 namespace Modular\GridList\Providers\Items;
 
-use Modular\Fields\Field;
+use Modular\Field;
 use Modular\GridList\Interfaces\ItemsProvider;
 use Modular\Relationships\HasRelatedPages;
 

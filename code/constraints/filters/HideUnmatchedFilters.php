@@ -1,7 +1,7 @@
 <?php
 namespace Modular\GridList\Constraints\Filters;
 
-use Modular\Fields\Field;
+use Modular\Field;
 use Modular\GridList\Interfaces\FilterConstraints;
 use Modular\Model;
 use Modular\Relationships\HasGridListFilters;

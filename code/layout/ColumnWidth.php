@@ -1,7 +1,7 @@
 <?php
 namespace Modular\GridList\Layout;
 
-use Modular\Fields\Field;
+use Modular\Field;
 use Modular\GridList\Interfaces\TempleDataProvider;
 
 /**
