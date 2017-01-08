@@ -3,7 +3,7 @@ namespace Modular\GridList;
 
 use Modular\GridList\Interfaces\Service\Service as ServiceInterface;
 use Modular\Object;
-use Modular\owned;
+use Modular\Traits\owned;
 
 class Service extends \Modular\Service implements ServiceInterface {
 	use owned;

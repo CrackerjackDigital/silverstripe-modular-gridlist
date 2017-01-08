@@ -22,9 +22,9 @@ class PageLength extends Field implements GridListTempleDataProvider {
 		24 => 24,
 	];
 
-	public function cmsFields() {
+	public function cmsFields($mode) {
 		return array_merge(
-			parent::cmsFields(),
+			parent::cmsFields($mode),
 			[
 				static::SingleFieldName => new \OptionsetField(
 					static::SingleFieldName,

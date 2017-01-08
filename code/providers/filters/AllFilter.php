@@ -13,12 +13,14 @@ use Modular\Models\GridListFilter;
  */
 class AllFilter extends Field implements FiltersProvider {
 	private static $filter_all = [];
-
+	
 	/**
 	 * Show the configured filter as a read-only field in the CMS.
+	 *
+	 * @param $mode
 	 * @return array
 	 */
-	public function cmsFields() {
+	public function cmsFields($mode) {
 		if ($filter = $this->provideGridListFilters()) {
 			if (isset($filter['Title'])) {
 				return [

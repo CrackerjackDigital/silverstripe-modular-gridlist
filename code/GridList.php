@@ -2,13 +2,13 @@
 namespace Modular\GridList;
 
 use Modular\Application;
-use Modular\config;
+use Modular\Traits\config;
 use Modular\ContentControllerExtension;
 use Modular\Controller;
 use Modular\Fields\ModelTag;
 use Modular\Model;
 use Modular\Models\GridListFilter;
-use Modular\owned;
+use Modular\Traits\owned;
 use Modular\Relationships\HasGridListFilters;
 
 /**

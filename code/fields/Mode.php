@@ -13,13 +13,16 @@ use Modular\GridList\Interfaces\TempleDataProvider;
 class Mode extends Field implements TempleDataProvider {
 	const SingleFieldName = 'GridListMode';
 	const SingleFieldSchema = 'enum("Grid,List","Grid")';
-
+	
 	/**
 	 * If GridList also has another way to provide mode, then set the field to that mode if it is set and don't
 	 * let it change.
+	 *
+	 * @param $mode
+	 * @return array
 	 */
-	public function cmsFields() {
-		$fields = parent::cmsFields();
+	public function cmsFields($mode) {
+		$fields = parent::cmsFields($mode);
 		// has the mode been provided some other way?
 		$data = [];
 		$source = get_class($this);

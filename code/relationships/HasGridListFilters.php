@@ -18,7 +18,7 @@ class HasGridListFilters extends HasManyMany {
 		'DisplayGridListFilters' => 'Filters'
 	];
 
-	public function cmsFields() {
+	public function cmsFields($mode) {
 		return [
 			new \TagField(
 				static::RelationshipName,

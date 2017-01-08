@@ -17,7 +17,7 @@ class Grouping extends Field {
 	    # 'grid'
 	];
 
-	public function cmsFields() {
+	public function cmsFields($mode) {
 		return [
 			new \DropdownField(
 				static::SingleFieldName,
