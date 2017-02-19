@@ -4,7 +4,7 @@ namespace Modular\GridList\Sequencers\Items;
 use Modular\Application;
 use Modular\Blocks\Block;
 use Modular\GridList\Constraints;
-use Modular\GridList\GridList;
+use Modular\GridList\HasGridList;
 use Modular\GridList\Interfaces\ItemsConstraints;
 use Modular\GridList\Interfaces\ItemsSequencer;
 use Modular\Models\GridListFilter;
@@ -27,11 +27,11 @@ class Pagination extends ModelExtension implements ItemsSequencer {
 
 		// filter items for each filter to current page length
 		if ($limit) {
-			$start = GridList::service()->Filters()->start() ?: 0;
+			$start = HasGridList::service()->Filters()->start() ?: 0;
 
 			$out = new \ArrayList();
 
-			$currentFilter = GridList::service()->constraint(Constraints::FilterVar);
+			$currentFilter = HasGridList::service()->constraint(Constraints::FilterVar);
 
 			if ($currentFilter && $currentFilter != 'all') {
 				if ($filter = GridListFilter::get()->filter(['ModelTag' => $currentFilter])->first()) {

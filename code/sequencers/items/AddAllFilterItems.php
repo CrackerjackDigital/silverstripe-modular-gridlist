@@ -4,7 +4,7 @@ namespace Modular\GridList\Sequencers\Items;
 use Modular\Application;
 use Modular\Blocks\Block;
 use Modular\GridList\Constraints;
-use Modular\GridList\GridList;
+use Modular\GridList\HasGridList;
 use Modular\GridList\Interfaces\ItemsConstraints;
 use Modular\GridList\Interfaces\ItemsSequencer;
 use Modular\Models\GridListFilter;

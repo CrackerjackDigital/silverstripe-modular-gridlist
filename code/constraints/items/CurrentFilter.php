@@ -1,7 +1,7 @@
 <?php
 namespace Modular\GridList\Constraints\Items;
 
-use Modular\GridList\GridList;
+use Modular\GridList\HasGridList;
 use Modular\GridList\Interfaces\ItemsConstraints;
 use Modular\ModelExtension;
 use Modular\Relationships\HasGridListFilters;
@@ -14,7 +14,7 @@ use Modular\Relationships\HasGridListFilters;
 class CurrentFilter extends ModelExtension implements ItemsConstraints {
 
 	public function constrainGridListItems(&$items, $filters, $parameters = []) {
-		$service = GridList::service();
+		$service = HasGridList::service();
 
 		$currentFilterID = $service->Filters()->currentFilterID();
 

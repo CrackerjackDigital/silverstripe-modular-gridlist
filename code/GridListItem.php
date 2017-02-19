@@ -42,7 +42,7 @@ class GridListItem extends ModelExtension {
 	 * @return string
 	 */
 	protected function template() {
-		$mode = GridList::service()->mode();
+		$mode = HasGridList::service()->mode();
 
 		if (!$template = $this()->config()->get('gridlist_template')) {
 			$template = "GridList/" . $this()->ClassName;

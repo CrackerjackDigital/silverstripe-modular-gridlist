@@ -2,21 +2,17 @@
 namespace Modular\GridList;
 
 use Modular\Application;
-use Modular\Traits\config;
-use Modular\ContentControllerExtension;
 use Modular\Controller;
-use Modular\Fields\ModelTag;
-use Modular\Model;
-use Modular\Models\GridListFilter;
+use Modular\Extensions\Controller\Content as ContentControllerExtension;
+use Modular\Traits\config;
 use Modular\Traits\owned;
-use Modular\Relationships\HasGridListFilters;
 
 /**
  * Add extensions to models which provide items, filters and other control to a GridList.
  *
  * @package Modular\Extensions
  */
-class GridList extends ContentControllerExtension {
+class HasGridList extends ContentControllerExtension {
 	use owned;
 	use config;
 
@@ -26,20 +22,11 @@ class GridList extends ContentControllerExtension {
 	const PaginatorServiceName = 'GridListPaginator';
 	const DefaultPageLength    = 12;
 
-	private static $gridlist_service = 'GridListService';
+	private static $gridlist_constraints = 'Modular\GridList\Constraints';
 
 	private static $default_page_length = self::DefaultPageLength;
 
 	private static $default_mode = self::ModeGrid;
-
-	public function CacheHash() {
-		if (\Director::isDev()) {
-			$hash = md5(microtime());
-		} else {
-			$hash = md5(Controller::curr()->getRequest()->getURL(true) . Application::get_current_page()->LastEdited);
-		}
-		return $hash;
-	}
 
 	/**
 	 * Return data for templates, accessible via e.g. GridList.Items and GridList.Mode
@@ -50,7 +37,9 @@ class GridList extends ContentControllerExtension {
 	public function GridList($mode = null) {
 		static $gridlist = [];
 
-		$mode = $mode ?: $this->service()->mode();
+		$constraints = $this->constraints();
+
+		$mode = $mode ?: $constraints->mode();
 
 		if (!isset($gridlist[ $mode ])) {
 			$items = $this->GridListItems($mode);
@@ -69,11 +58,10 @@ class GridList extends ContentControllerExtension {
 
 			// merge in extra data from provideGridListTemplateData extension call above this takes precedence
 			$data = array_merge(
+				$constraints->data(),
 				[
 					'Items'         => $items,
-					'ItemCount'     => $itemCount,
-					'Filters'       => $filters,
-					'Sort'          => $this->service()->sort()
+					'ItemCount'     => $itemCount
 				],
 				$templateData
 			);
@@ -227,24 +215,33 @@ class GridList extends ContentControllerExtension {
 	 * @return string mode chosen, e.g. 'grid' or 'list'
 	 */
 	public function Mode($mode = null) {
-		return $mode ?: $this->service()->mode() ?: $this()->config()->get('gridlist_default_mode') ?: $this->config()->get('default_mode');
+		return $mode ?: $this->constraints()->mode() ?: $this()->config()->get('gridlist_default_mode') ?: $this->config()->get('default_mode');
 	}
 
 	/**
 	 * Return instance of service that this gridlist is using
 	 *
-	 * @return Service
+	 * @return Constraints
 	 */
-	public static function service() {
+	public static function constraints() {
 		/** @var \Page $page */
 		$service = '';
 
 		if ($page = Application::get_current_page()) {
-			$service = $page->config()->get('gridlist_service');
+			$service = $page->config()->get('gridlist_constraints');
 		}
-		$service = $service ?: static::config()->get('gridlist_service');
+		$service = $service ?: static::config()->get('gridlist_constraints');
 
 		return \Injector::inst()->get($service);
+	}
+
+	public function CacheHash() {
+		if (\Director::isDev()) {
+			$hash = md5(microtime());
+		} else {
+			$hash = md5(Controller::curr()->getRequest()->getURL(true) . Application::get_current_page()->LastEdited);
+		}
+		return $hash;
 	}
 
 }
